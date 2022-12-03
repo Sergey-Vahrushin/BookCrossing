@@ -1,0 +1,26 @@
+﻿@using BookCrossing.Data.Models
+@model IEnumerable<Book>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+</head>
+<body>
+    <h2> Список всех книг </h2>
+    @{
+        foreach (var book in Model)
+        {
+            <div>
+                <h2> Название книги: @book.Name </h2>
+                <p>Жанр: @book.Genre, Автор книги: @book.Author, Год издания: @book.PublicationYear  </p>
+            </div>
+        }
+    }
+</body>
+</html>
