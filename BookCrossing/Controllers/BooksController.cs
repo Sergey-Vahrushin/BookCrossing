@@ -1,4 +1,5 @@
 ﻿using BookCrossing.Data.Interfaces;
+using BookCrossing.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,8 @@ namespace BookCrossing.Controllers
 
         public ViewResult List()
         {
+            ViewBag.Title = "Список книг";
+            BookListViewModel obj = new BookListViewModel();
             var book = _book.Books;
             return View(book);
         }

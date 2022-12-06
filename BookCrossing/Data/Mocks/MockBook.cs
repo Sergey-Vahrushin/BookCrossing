@@ -9,18 +9,20 @@ namespace BookCrossing.Data.Mocks
 {
     public class MockBook : IBook
     {
+        private readonly IBooksGenre _bookGenre = new MockGenre();
+
         public IEnumerable<Book> Books
         {
             get
             {
                 return new List<Book> {
-                    new Book { Author = "Джоа Роулинг", Genre = "Фэнткзи", Name = "Гарри Поттер", PublicationYear = 2000, Publisher = "Москва"},
-                    new Book { Author = "Толкиен", Genre = "Фэнтези", Name = "Властелин колец", PublicationYear = 1999, Publisher = "Питер"}
+                    new Book { Author = "Джоа Роулинг", Genre = _bookGenre.AllGenres.First(), Name = "Гарри Поттер", PublicationYear = 2000, Publisher = "Москва"},
+                    new Book { Author = "Толкиен", Genre = _bookGenre.AllGenres.Last(), Name = "Властелин колец", PublicationYear = 1999, Publisher = "Питер"}
                 };
             }
         }
 
-        public Book GetBook(int bookID)
+        public Book GetObjectBook(int bookID)
         {
             throw new NotImplementedException();
         }

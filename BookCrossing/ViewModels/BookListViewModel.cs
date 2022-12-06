@@ -4,12 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookCrossing.Data.Interfaces
+namespace BookCrossing.ViewModels
 {
-    public interface IBook
+    public class BookListViewModel
     {
-        IEnumerable<Book> Books { get; }
-
-        Book GetObjectBook(int bookID);
+        public IEnumerable<Book> AllBooks{ get; set; }
     }
 }

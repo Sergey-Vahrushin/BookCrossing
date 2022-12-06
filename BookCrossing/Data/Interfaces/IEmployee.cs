@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace BookCrossing.Data.Interfaces
 {
-    public interface IBook
+    interface IEmployee
     {
-        IEnumerable<Book> Books { get; }
 
-        Book GetObjectBook(int bookID);
+        IEnumerable<Employee> GetAllDepartmentsEmployees(int departmentId);
+
     }
 }
