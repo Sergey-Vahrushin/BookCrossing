@@ -11,10 +11,8 @@ namespace BookCrossing.Data
     public class AppDBContent : DbContext
     {
         
-
         public AppDBContent(DbContextOptions<AppDBContent> options): base(options)
         {
-
         }
         
         public DbSet<Book> Book { get; set; }
@@ -23,5 +21,8 @@ namespace BookCrossing.Data
 
         public DbSet<Department> Department { get; set; }
 
+        public DbSet<Employee> Employee { get; set; }
+
+        public DbSet<User> User { get; set; }
     }
 }

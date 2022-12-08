@@ -30,11 +30,11 @@ namespace BookCrossing
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDBContent>(options => options.UseNpgsql(_confString.GetConnectionString("DefaultConnection")));
-
-
-            services.AddTransient<IBook, MockBook>();
+            
+            services.AddTransient<IBook, BookRepository>();
             services.AddTransient<IDepartment, MockDepartment>();
             services.AddTransient<IBooksGenre, MockGenre>();
+
             services.AddMvc();
         }
 
@@ -45,6 +45,14 @@ namespace BookCrossing
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
+
+
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                AppDBContent dbContent = scope.ServiceProvider.GetRequiredService<AppDBContent>();
+                DBObjects.Initial(dbContent);
+            }
+           
         }
     }
 }

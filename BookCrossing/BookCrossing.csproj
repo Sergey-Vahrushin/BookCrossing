@@ -7,6 +7,12 @@
   <ItemGroup>
     <Compile Remove="Migrations\20221207180350_Initial_1.cs" />
     <Compile Remove="Migrations\20221207180350_Initial_1.Designer.cs" />
+    <Compile Remove="Migrations\20221207200217_Initial_1.cs" />
+    <Compile Remove="Migrations\20221207200217_Initial_1.Designer.cs" />
+    <Compile Remove="Migrations\20221207213606_NewEntity.cs" />
+    <Compile Remove="Migrations\20221207213606_NewEntity.Designer.cs" />
+    <Compile Remove="Migrations\20221208183401_Initial2.cs" />
+    <Compile Remove="Migrations\20221208183401_Initial2.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,7 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="JSON" Version="1.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.1" PrivateAssets="All" />
@@ -34,7 +39,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.0.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.1.1.1" />
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">

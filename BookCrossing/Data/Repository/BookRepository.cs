@@ -9,11 +9,18 @@ namespace BookCrossing.Data.Repository
 {
     public class BookRepository : IBook
     {
-        public IEnumerable<Book> Books => throw new NotImplementedException();
+        private  readonly AppDBContent AppDBContent;
+
+        public BookRepository(AppDBContent _appDBContent)
+        {
+            AppDBContent = _appDBContent;
+        }
+
+        public IEnumerable<Book> Books => AppDBContent.Book;
 
         public Book GetObjectBook(int bookID)
         {
-            throw new NotImplementedException();
+            return AppDBContent.Book.FirstOrDefault(p => p.Id == bookID);
         }
     }
 }
