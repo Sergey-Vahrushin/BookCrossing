@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookCrossing.Data.Interfaces
+namespace BookCrossing.ViewModels
 {
-    public interface IUser
+    public class DepartmentListViewModel
     {
-        User GetObjectUser(int userID);
+        public IEnumerable<Department> AllDepartments { get; }
     }
 }

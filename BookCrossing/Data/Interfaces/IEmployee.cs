@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookCrossing.Data.Interfaces
 {
-    interface IEmployee
+    public interface IEmployee
     {
 
         IEnumerable<Employee> GetAllDepartmentsEmployees(int departmentId);

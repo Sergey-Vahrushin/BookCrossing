@@ -1,0 +1,10 @@
+﻿<h2> Список всех книг </h2>
+@{
+    foreach (var department in Model)
+    {
+        <div>
+            <h2> Город: @department.City</h2>
+            <p> Адресс: @department.Address</p>
+        </div>
+    }
+}

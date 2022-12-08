@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookCrossing.Data.Interfaces
 {
-    interface IBooksGenre
+   public interface IBooksGenre
     {
         IEnumerable<Genre> AllGenres { get; }
     }
