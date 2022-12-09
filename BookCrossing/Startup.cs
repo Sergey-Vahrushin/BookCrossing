@@ -32,8 +32,8 @@ namespace BookCrossing
             services.AddDbContext<AppDBContent>(options => options.UseNpgsql(_confString.GetConnectionString("DefaultConnection")));
             
             services.AddTransient<IBook, BookRepository>();
-            services.AddTransient<IDepartment, MockDepartment>();
-            services.AddTransient<IBooksGenre, MockGenre>();
+            services.AddTransient<IDepartment, DepartmentRepository>();
+            services.AddTransient<IBooksGenre, GenreRepository>();
 
             services.AddMvc();
         }
