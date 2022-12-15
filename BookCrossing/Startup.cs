@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BookCrossing.Data;
 using BookCrossing.Data.Interfaces;
 using BookCrossing.Data.Mocks;
+using BookCrossing.Data.Models;
 using BookCrossing.Data.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,8 +35,15 @@ namespace BookCrossing
             services.AddTransient<IBook, BookRepository>();
             services.AddTransient<IDepartment, DepartmentRepository>();
             services.AddTransient<IBooksGenre, GenreRepository>();
+            services.AddTransient<IAllOrder, OrderRepository>();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(sp => IssueBook.GetIssue(sp));
+
 
             services.AddMvc();
+            services.AddMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,8 +52,15 @@ namespace BookCrossing
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
+            app.UseSession();
 
+            //app.UseMvcWithDefaultRoute();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}");
+                routes.MapRoute(name: "genreFilter", template: "Books/{action}/{genre?}", defaults: new { Controller = "Books", action = "List" });
+                routes.MapRoute(name: "departmentsList", template: "Departments/{action}/{id?}", defaults: new { Controller = "Departments", actiion = "List" });
+            });
 
             using (var scope = app.ApplicationServices.CreateScope())
             {

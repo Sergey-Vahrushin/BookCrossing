@@ -1,11 +1,32 @@
-﻿<h2> Список всех книг </h2>
-@{
-    foreach (var book in Model)
-    {
-        <div>
-            <h2> Название книги: @book.Name </h2>
-            <p>Жанр: @book.Genre, Автор книги: @book.Author, Год издания: @book.PublicationYear  </p>
-        </div>
-    }
-}
+﻿<div class="container">
+    <div class="display-6"> Список всех книг </div>
+    <div class="display-4"> @Model.CurrGenre </div>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        @{
+            foreach (Book book in Model.AllBooks)
+            {
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+                        <div class="card-body">
+                            <p class="card-title ">@book.Name</p>
+                            <p class="card-subtitle">@book.Author</p>
+                            <p class="card-text">@book.PublicationYear</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a class="btn btn-sm btn-outline-secondary" asp-controller="IssueBook" asp-action="AddToIssue" asp-route-bookId="@book.Id">Добавить</a>
+                                </div>
+                                <small class="text-muted">@book.Genre</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+
+
 

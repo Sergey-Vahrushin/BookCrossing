@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace BookCrossing.ViewModels
 {
-    public class BookListViewModel
+    public class IssueBookViewModel
     {
-        public IEnumerable<Book> AllBooks{ get; set; }
-        public string CurrGenre { get; set; }
+        public IssueBook IssueBook { get; set; }
     }
 }

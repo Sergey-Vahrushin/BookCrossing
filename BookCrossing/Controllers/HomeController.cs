@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookCrossing.Controllers
 {
-    public class HomeController: Controller
+    public class HomeController : Controller
     {
 
         public HomeController()
@@ -16,6 +16,7 @@ namespace BookCrossing.Controllers
 
         public ViewResult Index()
         {
+            ViewBag.Title = "Домашняя страница";
             return View();
         }
          

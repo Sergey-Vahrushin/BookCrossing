@@ -24,5 +24,12 @@ namespace BookCrossing.Data
         public DbSet<Employee> Employee { get; set; }
 
         public DbSet<User> User { get; set; }
+
+        public DbSet<IssueBookItem> IssueBookItem { get; set; }
+
+        public DbSet<Order> Order { get; set; }
+
+        public DbSet<OrderDetail> OrderDetail { get; set; }
+
     }
 }

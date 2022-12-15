@@ -3,15 +3,17 @@ using System;
 using BookCrossing.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BookCrossing.Migrations
 {
     [DbContext(typeof(AppDBContent))]
-    partial class AppDBContentModelSnapshot : ModelSnapshot
+    [Migration("20221210232419_IssueBookItem")]
+    partial class IssueBookItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,40 +119,6 @@ namespace BookCrossing.Migrations
                     b.ToTable("IssueBookItem");
                 });
 
-            modelBuilder.Entity("BookCrossing.Data.Models.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("CreateTime");
-
-                    b.Property<int>("DepartmentId");
-
-                    b.Property<int>("UseId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Order");
-                });
-
-            modelBuilder.Entity("BookCrossing.Data.Models.OrderDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("BookId");
-
-                    b.Property<int>("OrderId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookId");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("OrderDetail");
-                });
-
             modelBuilder.Entity("BookCrossing.Data.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -192,19 +160,6 @@ namespace BookCrossing.Migrations
                     b.HasOne("BookCrossing.Data.Models.Book", "Book")
                         .WithMany()
                         .HasForeignKey("BookId");
-                });
-
-            modelBuilder.Entity("BookCrossing.Data.Models.OrderDetail", b =>
-                {
-                    b.HasOne("BookCrossing.Data.Models.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("BookCrossing.Data.Models.Order", "Order")
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

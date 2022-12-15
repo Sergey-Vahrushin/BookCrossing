@@ -1,0 +1,15 @@
+﻿@model Order
+
+<div class="row">
+    <h3>Корзина книг</h3>
+    <form asp-action="Checkout" method="post" class="form-horizontal">
+        <div class="">
+           <label asp-for="DepartmentId"></label>
+            <div class="col-md-5">
+                <input asp-for="DepartmentId" class="form-control" />
+                <span asp-validatiom-for="departmentId" class="text-danger"></span>
+            </div>
+        </div>
+        <input class="btn btn-success" type="submit" value="Завершить заказ" /> 
+    </form>
+</div>
