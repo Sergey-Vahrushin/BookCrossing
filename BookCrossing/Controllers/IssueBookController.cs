@@ -46,5 +46,22 @@ namespace BookCrossing.Controllers
             return RedirectToAction("Index");
         }
 
+        public RedirectToActionResult DeleteFromIssue(int itemId)
+        {
+            var items = _issueBook.GetIssueItems();
+            _issueBook.ListIssueBookItems = items;
+            if (_issueBook.ListIssueBookItems != null)
+            {
+                var item = _issueBook.ListIssueBookItems.Find(i => i.Id == itemId);
+                if (item != null)
+                {
+                    _issueBook.DeleteFromIssue(item);
+                }
+            }
+            
+            
+            return RedirectToAction("Index");
+        }
+
     }
 }

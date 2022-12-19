@@ -49,6 +49,13 @@ namespace BookCrossing.Data.Models
             AppDBContent.SaveChanges();
         }
 
+        public void DeleteFromIssue(IssueBookItem bookItem)
+        {
+            AppDBContent.IssueBookItem.Remove(bookItem);
+
+            AppDBContent.SaveChanges();
+        }
+
         public List<IssueBookItem> GetIssueItems()
         {
             return AppDBContent.IssueBookItem.Where(c => c.IssueBookId == IssueBookId).Include(s => s.Book).ToList();

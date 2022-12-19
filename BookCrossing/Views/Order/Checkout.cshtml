@@ -1,15 +1,40 @@
-﻿@model Order
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model  Order
 
-<div class="row">
-    <h3>Корзина книг</h3>
-    <form asp-action="Checkout" method="post" class="form-horizontal">
-        <div class="">
-           <label asp-for="DepartmentId"></label>
+<div class="container">
+    <h3>Оформление заказа</h3>
+    <form asp-action="Checkout" method="post">
+        <div class="form-group">
+            <label asp-for="Name"></label>
             <div class="col-md-5">
-                <input asp-for="DepartmentId" class="form-control" />
-                <span asp-validatiom-for="departmentId" class="text-danger"></span>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
         </div>
-        <input class="btn btn-success" type="submit" value="Завершить заказ" /> 
+
+        <div class="form-group">
+            <label asp-for="SurName"></label>
+            <div class="col-md-5">
+                <input asp-for="SurName" class="form-control" />
+                <span asp-validation-for="SurName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <div class="col-md-5">
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Phone"></label>
+            <div class="col-md-5">
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+        </div>
+        <input class="btn btn-success" type="submit">
     </form>
 </div>

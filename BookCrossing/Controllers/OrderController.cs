@@ -1,5 +1,6 @@
 ﻿using BookCrossing.Data.Interfaces;
 using BookCrossing.Data.Models;
+using BookCrossing.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,14 @@ namespace BookCrossing.Controllers
         private readonly IAllOrder allOrders;
 
         private readonly IssueBook issueBook;
+        private readonly IDepartment allDepartments;
 
-        public OrderController(IAllOrder _appDBContent, IssueBook _issueBook)
+
+        public OrderController(IAllOrder _appDBContent, IssueBook _issueBook, IDepartment _department)
         {
             allOrders = _appDBContent;
             issueBook = _issueBook;
+            allDepartments = _department;
         }
 
         public IActionResult Checkout()
@@ -28,11 +32,15 @@ namespace BookCrossing.Controllers
         [HttpPost]
         public IActionResult Checkout(Order order)
         {
+            IEnumerable<Department> departments;
+            departments = allDepartments.AllDepartments;
+
             issueBook.ListIssueBookItems = issueBook.GetIssueItems();
+
 
             if (issueBook.ListIssueBookItems.Count == 0 )
             {
-                ModelState.AddModelError("", "У вас должны быть товары");
+                ModelState.AddModelError("", "У вас должны быть товары");     
             }
 
             if (ModelState.IsValid)
@@ -40,12 +48,19 @@ namespace BookCrossing.Controllers
                 allOrders.CreateOrder(order);
                 return RedirectToAction("Complete");
             }
-            return View(order);
+
+            var orderCreateObj = new CheckoutViewModel
+            {
+                Order = order,
+                AllDepartments = departments
+            };
+
+            return View(orderCreateObj);
         }
 
         public IActionResult Complete()
         {
-            ViewBag.Message = "Заказ успешно обработан";
+            ViewBag.Message = "Ваш заказ успешно обработан";
             return View();
         }
     }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BookCrossing.ViewModels
 {
-    public class BookListViewModel
+    public class CheckoutViewModel
     {
-        public IEnumerable<Book> AllBooks{ get; set; }
-        public IEnumerable<Genre> AllGenres { get; set; }
+        public Order Order { get; set; }
+        public IEnumerable<Department> AllDepartments { get; set; }
     }
 }

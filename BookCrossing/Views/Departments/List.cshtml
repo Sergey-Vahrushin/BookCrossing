@@ -1,10 +1,19 @@
-﻿<h2> Список всех книг </h2>
-@{
-    foreach (var department in Model)
-    {
-        <div>
-            <h2> Город: @department.City</h2>
-            <p> Адресс: @department.Address</p>
-        </div>
-    }
-}
+﻿<div class="container">
+    <h2 class="text-center"> @ViewBag.Title </h2>
+    <div class="list-group w-auto text-">
+        @{ foreach (var department in Model)
+            {
+                <div class="list-group-item d-flex gap-3 py-3" aria-current="true">
+                    <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                            <h6 class="mb-0">@department.City</h6>
+                            <p class="mb-0 opacity-75">@department.Address</p>
+                            <p class="mb-0 opacity-75">график работы: @department.StartTime.ToShortTimeString() - @department.EndTime.ToShortTimeString()</p>
+                        </div>
+                        <small class="opacity-50 text-nowrap">now</small>
+                    </div>
+                </div>
+           }
+            }
+    </div>
+</div>    

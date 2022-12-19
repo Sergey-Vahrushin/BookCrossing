@@ -1,7 +1,20 @@
 ﻿<div class="container">
-    Домашняя страница <br>
-    <ul>
-        <li><a href="Books/List">Список книг</a></li>
-        <li><a href="Departments/List">Список пунктов выдачи</a></li>
-    </ul>
+    <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+        <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+            <h1 class="display-4 fw-bold lh-1">Добро пожаловать на Буккроссинг,</h1>
+            <p class="lead">
+                где можно свободно брать книги, читать их, а также оставлять свои.<br>
+                Перефразировав знаменитую фразу, можно сказать: "Книги не знают границ", ведь это значит, что человек может читать любые книги в любое время в любом месте.<br>
+                Буккроссинг (Bookcrossing) - глобальная акция по распространению книг и обмену книгами между людьми, которые читают их.
+                В этом проекте нет ограничений, участвовать может любой желающий.
+            </p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+                <a  class="btn btn-primary btn-lg px-4 me-md-2 fw-bold" asp-controller="Books" asp-action="List">Книги</a>
+                <a  class="btn btn-outline-secondary btn-lg px-4" asp-controller="Departments" asp-action="List">Пункты обмена</a>
+            </div>
+        </div>
+        <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
+            <img class="rounded-lg-3" src="~/img/homeImg.jpg" alt="" width="400">
+        </div>
+    </div>
 </div>

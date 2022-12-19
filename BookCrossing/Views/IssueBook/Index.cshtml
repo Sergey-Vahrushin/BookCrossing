@@ -1,11 +1,18 @@
 ﻿@model IssueBookViewModel
 
 <div class="container">
-    @foreach (var el in Model.IssueBook.ListIssueBookItems)
-    {
-        <div class="alert alert-warning mt-3">
-            <b>Книга: </b> @el.Book.Name <br />
-        </div>
+    @{ 
+        if (Model.IssueBook.ListIssueBookItems.Count() == 0)
+        {
+            <p class="text-center">Ваша корзина пуста</p>
+        }
+        foreach (var el in Model.IssueBook.ListIssueBookItems)
+        {
+            <div class="alert alert-warning mt-3">
+                <b>Книга: </b> @el.Book.Name <br />
+                <a class="btn-danger" asp-controller="IssueBook" asp-action="DeleteFromIssue" asp-route-itemId="@el.Id">Убрать</a>
+            </div>
+        }
     }
     <hr />
     <a class="btn btn-danger" asp-controller="Order" asp-action="CheckOut"> Взять </a>

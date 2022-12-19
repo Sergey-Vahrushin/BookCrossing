@@ -13,35 +13,44 @@ namespace BookCrossing.Controllers
     public class BooksController: Controller
     {
         private readonly IBook _book;
+        private readonly IBooksGenre _booksGenres;
 
-        public BooksController(IBook book)
+
+        public BooksController(IBook book, IBooksGenre booksGenre)
         {
             _book = book;
+            _booksGenres = booksGenre;
         }
 
         [Route("Books/List")]
         [Route("Books/List/{genre?}")]
-        public ViewResult List(string genre)
+        public ViewResult List(int? genreId)
         {
             IEnumerable<Book> books;
-            string currGenre = "";
-            if (string.IsNullOrEmpty(genre))
+            IEnumerable<Genre> genres;
+
+            genres = _booksGenres.AllGenres.OrderBy(i => i.GenreName);
+
+            ViewBag.Title = "Список книг";
+
+            if (genreId != null)
             {
-                books = _book.Books.OrderBy(i => i.Id);
+                books = _book.Books.Where(i => i.GenreId == genreId);
+                ViewBag.Genre += "в жанре " + _booksGenres.AllGenres.FirstOrDefault(i => i.Id == genreId).GenreName;
             }
             else
             {
-                books = _book.Books.Where(i => i.Genre.GenreName.Equals(genre));
-                currGenre = genre;
+                books = _book.Books.OrderBy(i => i.Id);
             }
            
             var bookObj = new BookListViewModel
             {
                 AllBooks = books,
-                CurrGenre = currGenre
+                AllGenres = genres
             };
 
-            ViewBag.Title = "Список книг";
+            ViewBag.BookCount = books.Count();
+
             return View(bookObj);
         }
 
